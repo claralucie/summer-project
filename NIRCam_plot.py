@@ -129,7 +129,7 @@ nircam1_poly = nc1_poly6 #+ nc1_poly7 + nc1_poly22
 nircam2_poly = nc2_poly6 #+ nc2_poly7 + nc2_poly22
 miri_poly = miri_poly6
 
-poly = nircam1_poly + nircam2_poly + miri_poly
+nircam_poly = nircam1_poly + nircam2_poly
 
 nircam1_poly[0].set_label("NIRCamLW")
 ax.add_patch(nircam1_poly[0])
@@ -153,7 +153,7 @@ ax.scatter(cat["RA"], cat["DEC"], color="gray", alpha=0.8, s=2, lw=0)
 #ax.scatter(ground_cat["RA"], ground_cat["DEC"], color="gray", alpha=0.5, s=1, lw=0)
 
 for i in range(cat.shape[0]):
-    in_poly = [p.contains_point(cat.loc[i, ["RA", "DEC"]].values) for p in poly]
+    in_poly = [p.contains_point(cat.loc[i, ["RA", "DEC"]].values) for p in nircam_poly]
 
     mask[i] = np.max(in_poly)
     if not i % 1000:
